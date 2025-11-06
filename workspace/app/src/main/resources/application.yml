@@ -1,0 +1,46 @@
+server:
+  port: 10000
+  servlet:
+    session:
+      tracking-modes: COOKIE
+      cookie:
+        http-only: true
+        secure: false
+        same-site: lax
+      timeout: 10m
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/test?serverTimezone=Asia/Seoul
+    username: spring
+    password: 1234
+  session:
+    redis:
+      repository-type: indexed
+      flush-mode: immediate
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.example.app.domain;com.example.app.dto;
+  type-handlers-package: com.example.app.mybatis.handler
+  configuration:
+    map-underscore-to-camel-case: true
+
+# openssl rand -base64 32
+jwt:
+  secret: Xb/i9pIPkBh91ltvBCkwxJ7WsqR2HlECdRmwt+3kIxg=
+
+
+
+
+
+
+
+
