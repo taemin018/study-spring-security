@@ -1,0 +1,55 @@
+### Spring Security
+
+		Spring 기반 애플리케이션의 보안을 담당하는 프레임워크로서 인증(Authentication)과 인가(Authorization)를 쉽게 처리할 수 있게 해준다. 
+
+### JWT(JSON Web Token)
+
+		JSON 형태의 토큰으로, 서버와 클라이언트 간에 인증 정보를 안전하게 주고받을 때 사용한다. 
+		
+### JWT 특징
+
+		1. 자체적으로 인증 정보를 포함한다. 
+		2. 토큰 자체가 인증 수단이기 때문에 세션이 불필요하다(stateless, 무상태).
+		3. 서명(signature)으로 위변조를 방지한다.
+
+### JWT 서명
+
+		JWT = Header + payload + Signature
+
+		Header: 토큰 타입과 암호화 알고리즘 정보
+		payload: 사용자 정보, 만료시간 등
+		Signature: Header + Payload를 시크릿키로 암호화해서 변조 방지 
+
+		Signature는 Header와 Payload가 변조되지 않았다는 걸 증명하는 코드이다. 
+		Header와 Payload를 특정 알고리즘(HMAC, RSA 등)과 시크릿 키(Secret key)를 사용해서 암호와 또는 해시 처리된다.
+		서버는 클라이언트가 보낸 JWT를 받을 때, 같은 방식으로 Header와 Payload를 사용해 다시 서명을 만들고 
+		JWT에 붙어온 서명(Signature)과 새로 만든 서명이 같으면 조작된게 없다고 판단한다. 
+		만약 다르다면 위변조된 것으로 간주하고, 토큰이 거절된다.
+
+### Spring Security + JWT
+
+		Provider: JWT 생성, 서명, 검증 기능을 구현한다. 
+		Filter: 인증에 성공하면 JWT 생성 후 클라이언트에 전달 
+		UserDetailService: 사용자 정보 조회 및 인정 처리를 담당하며, 실제 사용자 정보가 담기는 객체이다. 
+		SecurityConfig: 보안 설정(필터체인, 인증 방식, 접근 제한, 권한 설정 등)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+																							
